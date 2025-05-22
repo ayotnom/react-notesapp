@@ -17,9 +17,9 @@ import { getUrl } from "aws-amplify/storage";
 import { uploadData } from "aws-amplify/storage";
 import { generateClient } from "aws-amplify/data";
 import outputs from "../amplify_outputs.json";
-/**
- * @type {import('aws-amplify/data').Client<import('../amplify/data/resource').Schema>}
- */
+
+import('aws-amplify/data').Client<import('../amplify/data/resource').Schema>
+ 
 
 Amplify.configure(outputs);
 const client = generateClient({
@@ -51,7 +51,7 @@ export default function App() {
     setNotes(notes);
   }
 
-  async function createNote(event) {
+  async function createNote(event: React.ChangeEvent<HTMLInputElement>) {
     event.preventDefault();
     const form = new FormData(event.target);
     console.log(form.get("image").name);
