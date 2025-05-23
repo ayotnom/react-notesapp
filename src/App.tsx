@@ -51,7 +51,7 @@ export default function App() {
     setNotes(notes);
   }
 
-  async function createNote(event: React.ChangeEvent<HTMLInputElement>) {
+  async function createNote(event) {
     event.preventDefault();
     const form = new FormData(event.target);
     console.log(form.get("image").name);
