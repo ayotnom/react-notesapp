@@ -38,7 +38,7 @@ export default function App() {
     const { data: notes } = await client.models.Note.list();
     await Promise.all(
       notes.map(async (note) => {
-        if (note.image) {
+        if (note.image != null ) {
           const linkToStorageFile = await getUrl({
             path: ({ identityId }) => `media/${identityId}/${note.image}`,
           });
