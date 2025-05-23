@@ -27,7 +27,7 @@ const client = generateClient({
 });
 
 export default function App() {
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState<any[]>([]);
 
   useEffect(() => {
     fetchNotes();
