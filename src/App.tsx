@@ -17,12 +17,13 @@ import { getUrl } from "aws-amplify/storage";
 import { uploadData } from "aws-amplify/storage";
 import { generateClient } from "aws-amplify/data";
 import outputs from "../amplify_outputs.json";
+import type { Schema } from "../amplify/data/resource";
 /**
 * @type import('aws-amplify/data').Client<import('../amplify/data/resource').Schema>
  */
 
 Amplify.configure(outputs);
-const client = generateClient({
+const client = generateClient<Schema>({
   authMode: "userPool",
 });
 
