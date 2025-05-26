@@ -38,12 +38,12 @@ export default function App() {
     const { data: notes } = await client.models.Note.list();
     await Promise.all(
       notes.map(async (note) => {
-        if (note.image !== null) {
+        if (note.image) {
           const linkToStorageFile = await getUrl({
             path: ({ identityId }) => `media/${identityId}/${note.image}`,
           });
           console.log(linkToStorageFile.url);
-          note.image = linkToStorageFile.url!;
+          note.image = linkToStorageFile.url;
         }
         return note;
       })
@@ -55,7 +55,7 @@ export default function App() {
   async function createNote(event) {
     event.preventDefault();
     const form = new FormData(event.target);
-    console.log(form.get("image").name);
+    //console.log(form.get("image").name);
 
     const { data: newNote } = await client.models.Note.create({
       name: form.get("name"),
