@@ -43,7 +43,7 @@ export default function App() {
             path: ({ identityId }) => `media/${identityId}/${note.image}`,
           });
           console.log(linkToStorageFile.url);
-          note.image = linkToStorageFile.url;
+          note.image = linkToStorageFile.url.toString();
         }
         return note;
       })
