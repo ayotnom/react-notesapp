@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Authenticator,
   Button,
@@ -52,7 +52,7 @@ export default function App() {
     setNotes(notes);
   }
 
-  async function createNote(event) {
+  async function createNote(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = new FormData(event.target);
     //console.log(form.get("image").name);
