@@ -54,13 +54,14 @@ export default function App() {
 
   async function createNote(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const form = new FormData(event.target);
+    const form = new FormData(event.currentTarget);
     //console.log(form.get("image").name);
 
     const { data: newNote } = await client.models.Note.create({
-      name: form.get("name"),
-      description: form.get("description"),
+      name: form.get("name").toString(),
+      description: form.get("description").toString(),
       image: form.get("image").name,
+      
     });
 
     console.log(newNote);
