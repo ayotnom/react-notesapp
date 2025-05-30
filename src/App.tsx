@@ -55,15 +55,18 @@ export default function App() {
   async function createNote(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
+    var nameEntry = form.get("name") === null ? "" : form.get("name").toString();
+    var descEntry = form.get("description") === null ? "" : form.get("description").toString();
+    var imageEntry = form.get("image") === null ? "" : form.get("image").name;
     //console.log(form.get("image").name);
-    if(form !== null) {
-    	const { data: newNote } = await client.models.Note.create({
-      		name: form.get("name").toString(),
-      		description: form.get("description").toString(),
-      		image: form.get("image").name,
+    const { data: newNote } = await client.models.Note.create({
+	name: nameEntry,
+      	description: descEntry,
+      	image: imageEntry,
       
-    	});
-    }
+    });
+    
+
 
     console.log(newNote);
     if (newNote.image)
