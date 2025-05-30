@@ -57,7 +57,7 @@ export default function App() {
     const form = new FormData(event.currentTarget);
     var nameEntry = form.get("name")?.toString() ?? ""; 
     var descEntry = form.get("description")?.toString() ?? "";
-    var imageEntry = form.get("image") instanceof File ? form.get("image")! : "";
+    var imageEntry = form.get("image") instanceof File ? form.get("image")!.name : "";
     //console.log(form.get("image").name);
     const { data: newNote } = await client.models.Note.create({
 	name: nameEntry,
@@ -65,17 +65,19 @@ export default function App() {
       	image: imageEntry,
       
     });
-    
+
+    const rawImage = formData.get("image");
 
 
-    console.log(newNote);
-    if (newNote.image)
-      if (newNote.image)
-        await uploadData({
-          path: ({ identityId }) => `media/${identityId}/${newNote.image}`,
-
-          data: form.get("image"),
-        }).result;
+    if(newNote !== null && rawImage instanceof File) {
+    	console.log(newNote);
+    	if (newNote.image)
+      		if (newNote.image)
+        		await uploadData({
+          			path: ({ identityId }) => `media/${identityId}/${newNote.image}`,
+          			data: form.get("image"),
+        		}).result;
+    }
 
     fetchNotes();
     event.target.reset();
