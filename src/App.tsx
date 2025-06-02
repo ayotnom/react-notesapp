@@ -172,7 +172,7 @@ export default function App() {
                 className="box"
               >
                 <View>
-                  <Heading level={'h3' as const}>{note.name}</Heading>
+                  <Heading level={3}>{note.name}</Heading>
                 </View>
                 <Text fontStyle="italic">{note.description}</Text>
                 {note.image && (
