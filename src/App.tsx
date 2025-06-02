@@ -81,7 +81,7 @@ export default function App() {
       		if (newNote.image)
         		await uploadData({
           			path: ({ identityId }) => `media/${identityId}/${newNote.image}`,
-          			data: form.get("image"),
+          			data: rawImage,
         		}).result;
     }
 
@@ -89,7 +89,7 @@ export default function App() {
     event.currentTarget.reset();
   }
 
-  async function deleteNote({ id }) {
+  async function deleteNote({id : string}) {
     const toBeDeletedNote = {
       id: id,
     };
@@ -178,7 +178,7 @@ export default function App() {
                 {note.image && (
                   <Image
                     src={note.image}
-                    alt={`visual aid for ${notes.name}`}
+                    alt={`visual aid for ${note.name}`}
                     style={{ width: 400 }}
                   />
                 )}
