@@ -89,7 +89,7 @@ export default function App() {
     event.currentTarget.reset();
   }
 
-  async function deleteNote({id : string}) {
+  async function deleteNote(id : string) {
     const toBeDeletedNote = {
       id: id,
     };
@@ -172,7 +172,7 @@ export default function App() {
                 className="box"
               >
                 <View>
-                  <Heading level="3">{note.name}</Heading>
+                  <Heading level="h3">{note.name}</Heading>
                 </View>
                 <Text fontStyle="italic">{note.description}</Text>
                 {note.image && (
@@ -184,7 +184,7 @@ export default function App() {
                 )}
                 <Button
                   variation="destructive"
-                  onClick={() => deleteNote(note)}
+                  onClick={() => deleteNote(note.id)}
                 >
                   Delete note
                 </Button>
